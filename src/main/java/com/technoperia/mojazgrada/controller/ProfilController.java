@@ -14,6 +14,7 @@ public class ProfilController {
     public JSONObject get(){
         JSONObject object = new JSONObject();
         object.put("name", "ebrar");
+        object.put("surname", "islami");
         return object;
     }
 
