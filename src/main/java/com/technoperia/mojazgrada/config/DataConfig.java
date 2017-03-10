@@ -13,7 +13,7 @@ import java.util.Properties;
 
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.ebrarislami.bilenesor.dao")
+@EnableJpaRepositories(basePackages = "com.technoperia.mojazgrada.dao")
 //@PropertySource("application.properties")
 public class DataConfig {
     @Autowired
