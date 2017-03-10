@@ -1,0 +1,82 @@
+group 'com.technoperia'
+//version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+bootRun {
+    addResources = true
+}
+
+bootRepackage {
+    mainClass = 'com.technoperia.Application'
+}
+
+jar {
+    baseName = 'mojazgrada'
+}
+
+war {
+    baseName = 'mojazgrada'
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile group: 'org.springframework', name: 'spring-expression', version: '4.3.1.RELEASE'
+    compile 'org.springframework:spring-orm:4.2.4.RELEASE'
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.10.2.RELEASE'
+    compile 'org.hibernate:hibernate-core:5.0.6.Final'
+    compile 'org.hibernate:hibernate-entitymanager:5.0.6.Final'
+    compile 'com.google.guava:guava:19.0'
+    compile group: 'commons-httpclient', name: 'commons-httpclient', version: '3.1'
+    compile group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.2.5'
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.3.4'
+    compile group: 'commons-io', name: 'commons-io', version: '2.4'
+    compile 'org.apache.tomcat:tomcat-dbcp:8.0.30'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.6.3'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.6.3'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.6.3'
+    runtime 'javax.transaction:jta:1.1'
+    compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+    compile group: 'net.coobird', name: 'thumbnailator', version: '0.4.1'
+    compile group: 'org.glassfish.jersey.media', name: 'jersey-media-multipart', version: '2.7'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '1.4.0.RELEASE'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+/*
+task stage(type: Copy, dependsOn: [clean, build]) {
+    from jar.archivePath
+    into project.rootDir
+    rename {
+        'app.jar'
+    }
+}
+stage.mustRunAfter(clean)
+
+clean << {
+    project.file('app.jar').delete()
+}
+*/
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.9'
+}
