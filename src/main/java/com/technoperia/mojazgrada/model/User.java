@@ -22,6 +22,8 @@ public class User {
 
     private int role;
 
+    private String image;
+
     public String fullName;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -120,5 +122,13 @@ public class User {
 
     public void setSmetki(List<Smetka> smetki) {
         this.smetki = smetki;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
