@@ -24,6 +24,10 @@ public class Stan {
     @OneToMany(mappedBy = "stan")
     private List<Oglas> oglasi = new ArrayList<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "stan")
+    private List<Smetka> smetki = new ArrayList<>();
+
     @OneToOne(fetch = FetchType.EAGER)
     @JsonIgnore
     private User admin;
@@ -84,5 +88,13 @@ public class Stan {
 
     public void setOglasi(List<Oglas> oglasi) {
         this.oglasi = oglasi;
+    }
+
+    public List<Smetka> getSmetki() {
+        return smetki;
+    }
+
+    public void setSmetki(List<Smetka> smetki) {
+        this.smetki = smetki;
     }
 }

@@ -1,5 +1,7 @@
 package com.technoperia.mojazgrada.controller;
 
+import com.technoperia.mojazgrada.dao.OglasDao;
+import com.technoperia.mojazgrada.dao.SmetkaDao;
 import com.technoperia.mojazgrada.dao.StanDao;
 import com.technoperia.mojazgrada.dao.UserDao;
 import com.technoperia.mojazgrada.model.*;
@@ -18,6 +20,10 @@ public class UserController {
     private StanDao stanDao;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private OglasDao oglasDao;
+    @Autowired
+    private SmetkaDao smetkaDao;
 
     @RequestMapping("/users")
     public List<User> getUsers(){
@@ -34,6 +40,20 @@ public class UserController {
         Stan stan = stanDao.findById(sID);
         return userDao.findByStan(stan);
     }
+
+    @RequestMapping("users/{uID}/oglasi")
+    public List<Oglas> getOglasiForUser(@PathVariable("uID") Long uID){
+        User user = userDao.findById(uID);
+        return oglasDao.findByUser(user);
+    }
+
+    @RequestMapping("users/{uID}/smetki")
+    public List<Smetka> getSmetkiForUser(@PathVariable("uID") Long uID){
+        User user = userDao.findById(uID);
+        return smetkaDao.findByUser(user);
+    }
+
+
 
 
 }

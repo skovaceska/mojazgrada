@@ -31,6 +31,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Oglas> oglasi = new ArrayList<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Smetka> smetki = new ArrayList<>();
+
     @OneToOne(mappedBy = "admin", cascade = CascadeType.ALL,
             fetch = FetchType.EAGER, optional = false)
     private Stan admin;
@@ -108,5 +112,13 @@ public class User {
 
     public void setOglasi(List<Oglas> oglasi) {
         this.oglasi = oglasi;
+    }
+
+    public List<Smetka> getSmetki() {
+        return smetki;
+    }
+
+    public void setSmetki(List<Smetka> smetki) {
+        this.smetki = smetki;
     }
 }
